@@ -1,0 +1,310 @@
+{
+  "summary": {
+    "total_raw_collected": 100,
+    "total_valid_records": 17,
+    "date_range": {
+      "start": "2019-01-01T00:00:00Z",
+      "end": "2026-06-26T12:25:03Z"
+    },
+    "source_wise_counts": {
+      "app_store": 17,
+      "reddit": 0
+    },
+    "top_themes": [
+      [
+        "unmet need",
+        6
+      ],
+      [
+        "discovery frustration",
+        5
+      ],
+      [
+        "repetitive listening",
+        3
+      ],
+      [
+        "playlist dependence",
+        2
+      ],
+      [
+        "recommendation mismatch",
+        1
+      ]
+    ]
+  },
+  "records": [
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "CA",
+      "date": "2026-06-24T12:07:00Z",
+      "original_text": "Long time Spotify premium subsriber. Everything is great except the AI DJ. Its super annoying always plays the same songs instead of at least playing some other songs from the same artist. You could do much better!",
+      "cleaned_text": "Long time Spotify premium subsriber. Everything is great except the AI DJ. Its super annoying always plays the same songs instead of at least playing some other songs from the same artist. You could do much better!",
+      "theme": "repetitive listening",
+      "subtheme": [
+        "looping-recommendations"
+      ],
+      "sentiment": -0.5,
+      "user_segment": "Mobile User",
+      "insight": "User is experiencing high repetition and loops when playing playlists or using smart shuffle.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "CA",
+      "date": "2026-06-24T11:00:00Z",
+      "original_text": "Can’t make it stop. If you ever listen to a podcast etc, and decide you don’t like it- it will play it up next for the rest of your life. There is no way to make it stop automatically playing or suggest it less. Either that, or it will restart a podcast you have already finished- I know you just listened to that 15 minutes ago, maybe you want to hear it again??",
+      "cleaned_text": "Can’t make it stop. If you ever listen to a podcast etc, and decide you don’t like it- it will play it up next for the rest of your life. There is no way to make it stop automatically playing or suggest it less. Either that, or it will restart a podcast you have already finished- I know you just listened to that 15 minutes ago, maybe you want to hear it again??",
+      "theme": "discovery frustration",
+      "subtheme": [
+        "ui-clutter"
+      ],
+      "sentiment": -0.5,
+      "user_segment": "Mobile User",
+      "insight": "User finds the user interface (search, home screen) too cluttered, especially with podcasts, hindering music discovery.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "CA",
+      "date": "2026-06-24T08:18:00Z",
+      "original_text": "shame on you. This app has been so bad recently. and modified my playlist so i will cancel this suscription.     Bye",
+      "cleaned_text": "shame on you. This app has been so bad recently. and modified my playlist so i will cancel this suscription. Bye",
+      "theme": "playlist dependence",
+      "subtheme": [
+        "manual-curation-heavy"
+      ],
+      "sentiment": 0.0,
+      "user_segment": "Static Listener",
+      "insight": "User relies heavily on custom curated playlists rather than trusting algorithmic channels.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "CA",
+      "date": "2026-06-24T08:04:00Z",
+      "original_text": "I ❤️ Spotify. Spotify has helped me through so much it may seem overdramatic but it has every song you can think of and that is something that k think everyone can love. It has a whole bunch of songs like a whole bunch and it is a great music app. Spotify is the only app I’ve used for music I’ve never used any other app because Spotify has caught my full attention. You can add as many songs as you want to one playlist but you can make multiple playlists and you can also use ai to make a playlist which is great because if you don’t know some songs Spotify has got your back. I most definitely recommend Spotify.",
+      "cleaned_text": "I ❤️ Spotify. Spotify has helped me through so much it may seem overdramatic but it has every song you can think of and that is something that k think everyone can love. It has a whole bunch of songs like a whole bunch and it is a great music app. Spotify is the only app I’ve used for music I’ve never used any other app because Spotify has caught my full attention. You can add as many songs as you want to one playlist but you can make multiple playlists and you can also use ai to make a playlist which is great because if you don’t know some songs Spotify has got your back. I most definitely recommend Spotify.",
+      "theme": "unmet need",
+      "subtheme": [
+        "social-discovery-missing"
+      ],
+      "sentiment": -0.1,
+      "user_segment": "Mobile User",
+      "insight": "User mentions a gap or missing discovery feature in the application.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "CA",
+      "date": "2026-06-24T04:38:00Z",
+      "original_text": "Skips like a cd. Why are my songs skipping like I’m listening to a cd while running on a discman?\nAnd why does sh suck so bad, so repetitive!! And cuts the songs off!\nYou suck",
+      "cleaned_text": "Skips like a cd. Why are my songs skipping like I’m listening to a cd while running on a discman? And why does sh suck so bad, so repetitive!! And cuts the songs off! You suck",
+      "theme": "repetitive listening",
+      "subtheme": [
+        "looping-recommendations"
+      ],
+      "sentiment": -0.3,
+      "user_segment": "Mobile User",
+      "insight": "User is experiencing high repetition and loops when playing playlists or using smart shuffle.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "CA",
+      "date": "2026-06-23T23:54:00Z",
+      "original_text": "Stuttering playback. Podcasts speed up, skip portions and audio falls off during play.",
+      "cleaned_text": "Stuttering playback. Podcasts speed up, skip portions and audio falls off during play.",
+      "theme": "discovery frustration",
+      "subtheme": [
+        "ui-clutter"
+      ],
+      "sentiment": -0.5,
+      "user_segment": "Mobile User",
+      "insight": "User finds the user interface (search, home screen) too cluttered, especially with podcasts, hindering music discovery.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "CA",
+      "date": "2026-06-23T17:11:00Z",
+      "original_text": "Stuck on smart shuffle. I have an old phone that doesn’t update very well so that might be a factor, but my Spotify is stuck on smart shuffle and it says I need to buy premium to turn off and put it back to normal or just on normal shuffle. My iPad is different though and it says I have to pay for things like smart shuffle, and I don’t understand why it’s doing that on my phone. I’ve checked and it doesn’t say I have to update it or anything, it just doesn’t work right for me on my phone and I don’t understand why.",
+      "cleaned_text": "Stuck on smart shuffle. I have an old phone that doesn’t update very well so that might be a factor, but my Spotify is stuck on smart shuffle and it says I need to buy premium to turn off and put it back to normal or just on normal shuffle. My iPad is different though and it says I have to pay for things like smart shuffle, and I don’t understand why it’s doing that on my phone. I’ve checked and it doesn’t say I have to update it or anything, it just doesn’t work right for me on my phone and I don’t understand why.",
+      "theme": "repetitive listening",
+      "subtheme": [
+        "looping-recommendations"
+      ],
+      "sentiment": -0.3,
+      "user_segment": "Mobile User",
+      "insight": "User is experiencing high repetition and loops when playing playlists or using smart shuffle.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "GB",
+      "date": "2026-06-22T08:33:00Z",
+      "original_text": "Spotify. it is amazing and i can listen to my songs and shows and podcasts",
+      "cleaned_text": "Spotify. it is amazing and i can listen to my songs and shows and podcasts",
+      "theme": "discovery frustration",
+      "subtheme": [
+        "ui-clutter"
+      ],
+      "sentiment": -0.5,
+      "user_segment": "Mobile User",
+      "insight": "User finds the user interface (search, home screen) too cluttered, especially with podcasts, hindering music discovery.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "GB",
+      "date": "2026-06-22T08:11:00Z",
+      "original_text": "Brilliant. I got to listen to my fav artists",
+      "cleaned_text": "Brilliant. I got to listen to my fav artists",
+      "theme": "unmet need",
+      "subtheme": [
+        "social-discovery-missing"
+      ],
+      "sentiment": -0.1,
+      "user_segment": "Mobile User",
+      "insight": "User mentions a gap or missing discovery feature in the application.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "GB",
+      "date": "2026-06-22T00:24:00Z",
+      "original_text": "Billion dollar company and they can’t stop their songs from being hacked. Songs get hacked and replaced almost regularly, people also post from other artists accounts",
+      "cleaned_text": "Billion dollar company and they can’t stop their songs from being hacked. Songs get hacked and replaced almost regularly, people also post from other artists accounts",
+      "theme": "unmet need",
+      "subtheme": [
+        "social-discovery-missing"
+      ],
+      "sentiment": -0.1,
+      "user_segment": "Mobile User",
+      "insight": "User mentions a gap or missing discovery feature in the application.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "GB",
+      "date": "2026-06-21T16:58:00Z",
+      "original_text": "The only let down. I try to listen to many podcasts on Spotify but the only let down with this app is the timer… you need to add a feature where you can either edit your own timer time or make your options wider. I need more than one hour or end of the episode. This adjustment would make it 5 star and make my use increase",
+      "cleaned_text": "The only let down. I try to listen to many podcasts on Spotify but the only let down with this app is the timer… you need to add a feature where you can either edit your own timer time or make your options wider. I need more than one hour or end of the episode. This adjustment would make it 5 star and make my use increase",
+      "theme": "discovery frustration",
+      "subtheme": [
+        "ui-clutter"
+      ],
+      "sentiment": -0.5,
+      "user_segment": "Mobile User",
+      "insight": "User finds the user interface (search, home screen) too cluttered, especially with podcasts, hindering music discovery.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "GB",
+      "date": "2026-06-21T12:57:00Z",
+      "original_text": "Quality. Perfect algorithms really top quality ‼️❤️",
+      "cleaned_text": "Quality. Perfect algorithms really top quality ‼️❤️",
+      "theme": "unmet need",
+      "subtheme": [
+        "social-discovery-missing"
+      ],
+      "sentiment": -0.1,
+      "user_segment": "Mobile User",
+      "insight": "User mentions a gap or missing discovery feature in the application.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "GB",
+      "date": "2026-06-21T10:45:00Z",
+      "original_text": "My opinion. Yo what’s up \nIt’s really good, you know especially with premium I’ve got premium and it’s really really good hardly recommend getting it cause you got no ads to listen to unlimited song a and I have adhd so when I’m  pumped I can listen to chill music and calm down",
+      "cleaned_text": "My opinion. Yo what’s up It’s really good, you know especially with premium I’ve got premium and it’s really really good hardly recommend getting it cause you got no ads to listen to unlimited song a and I have adhd so when I’m pumped I can listen to chill music and calm down",
+      "theme": "unmet need",
+      "subtheme": [
+        "social-discovery-missing"
+      ],
+      "sentiment": -0.1,
+      "user_segment": "Mobile User",
+      "insight": "User mentions a gap or missing discovery feature in the application.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "GB",
+      "date": "2026-06-21T10:36:00Z",
+      "original_text": "Premium?!. Keep asking me to pay for premium but ads don’t come off podcasts - the podcasters themselves have adverts, that’s fine, I expect it, Spotify then telling me there’s a podcast about the British monarchy that even listeners of it don’t rate 5 stars themselves doesn’t feel like “ad free” listening to me",
+      "cleaned_text": "Premium?!. Keep asking me to pay for premium but ads don’t come off podcasts - the podcasters themselves have adverts, that’s fine, I expect it, Spotify then telling me there’s a podcast about the British monarchy that even listeners of it don’t rate 5 stars themselves doesn’t feel like “ad free” listening to me",
+      "theme": "discovery frustration",
+      "subtheme": [
+        "ui-clutter"
+      ],
+      "sentiment": -0.5,
+      "user_segment": "Mobile User",
+      "insight": "User finds the user interface (search, home screen) too cluttered, especially with podcasts, hindering music discovery.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "GB",
+      "date": "2026-06-21T08:58:00Z",
+      "original_text": "Really REALLY Good. Definitely the best music app and premium has its perks which are very helpful. The amount of songs is incredible and I love that you can create blends and playlists with other people.",
+      "cleaned_text": "Really REALLY Good. Definitely the best music app and premium has its perks which are very helpful. The amount of songs is incredible and I love that you can create blends and playlists with other people.",
+      "theme": "unmet need",
+      "subtheme": [
+        "social-discovery-missing"
+      ],
+      "sentiment": -0.1,
+      "user_segment": "Mobile User",
+      "insight": "User mentions a gap or missing discovery feature in the application.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "GB",
+      "date": "2026-06-21T08:24:00Z",
+      "original_text": "BEST IN THE WORLD. Spotify is an amazing app filled with all of your favourite songs with easy ways to find new songs in your favourite genres it is smooth with no problems at all",
+      "cleaned_text": "BEST IN THE WORLD. Spotify is an amazing app filled with all of your favourite songs with easy ways to find new songs in your favourite genres it is smooth with no problems at all",
+      "theme": "recommendation mismatch",
+      "subtheme": [
+        "wrong-genre-autoplay"
+      ],
+      "sentiment": -0.4,
+      "user_segment": "Mobile User",
+      "insight": "Autoplay or algorithmic recommendations are mismatching the user's current mood or genre preference.",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "app_store",
+      "platform": "iOS",
+      "country": "GB",
+      "date": "2026-06-21T07:46:00Z",
+      "original_text": "Ridiculous Reminders. I don’t need a reminder EVERY TIME I click on my playlist that it plays in a random order due to the fact I don’t have premium. I KNOW. And ads after every song sometimes ??? Ridiculous honestly",
+      "cleaned_text": "Ridiculous Reminders. I don’t need a reminder EVERY TIME I click on my playlist that it plays in a random order due to the fact I don’t have premium. I KNOW. And ads after every song sometimes ??? Ridiculous honestly",
+      "theme": "playlist dependence",
+      "subtheme": [
+        "manual-curation-heavy"
+      ],
+      "sentiment": 0.0,
+      "user_segment": "Static Listener",
+      "insight": "User relies heavily on custom curated playlists rather than trusting algorithmic channels.",
+      "confidence_score": 0.9
+    }
+  ]
+}
