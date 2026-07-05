@@ -476,6 +476,89 @@
         .drawer-overlay.open {
             display: block;
         }
+
+        /* Settings button in sidebar logo section */
+        .settings-icon-btn {
+            background: none;
+            border: none;
+            color: var(--spotify-light-grey);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .settings-icon-btn:hover {
+            color: var(--spotify-white);
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: scale(1.05);
+        }
+
+        /* Connection warning banner */
+        .connection-warning-banner {
+            grid-column: 1 / -1;
+            background-color: rgba(226, 33, 52, 0.15);
+            border: 1px solid var(--danger-color);
+            border-radius: 8px;
+            padding: 12px 20px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--spotify-white);
+            margin-bottom: 8px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .connection-warning-banner .warning-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .connection-warning-banner .warning-action-btn {
+            background-color: var(--danger-color);
+            color: var(--spotify-white);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background-color 0.2s;
+        }
+
+        .connection-warning-banner .warning-action-btn:hover {
+            background-color: #f83a4d;
+        }
+
+        .settings-input {
+            width: 100%;
+            background-color: var(--spotify-black);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: var(--spotify-white);
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s ease;
+            margin-bottom: 12px;
+        }
+        
+        .settings-input:focus {
+            border-color: var(--spotify-green);
+        }
     </style>
 </head>
 <body>
@@ -519,15 +602,58 @@
         </div>
     </div>
 
+    <!-- API Settings Drawer -->
+    <div class="drawer-overlay" id="settingsOverlay" onclick="closeSettingsModal()"></div>
+    <div class="sidebar-drawer" id="settingsModal">
+        <button class="drawer-close" onclick="closeSettingsModal()">&times;</button>
+        <h2 class="drawer-title">API Settings</h2>
+        
+        <div class="drawer-section">
+            <p style="font-size: 13px; color: var(--spotify-light-grey); margin-bottom: 16px;">
+                Configure the backend API URL for this dashboard. If you're running the backend server locally, keep the default or use your deployed URL.
+            </p>
+        </div>
+        
+        <div class="drawer-section">
+            <div class="drawer-label">Backend API Base URL</div>
+            <input type="text" id="apiBaseInput" class="settings-input" placeholder="http://localhost:8080/api/v1">
+            <div style="display: flex; gap: 8px;">
+                <button class="btn btn-secondary" style="padding: 8px 12px; font-size: 12px; flex: 1; margin: 0;" onclick="resetApiUrl('local')">Reset to Local</button>
+                <button class="btn btn-secondary" style="padding: 8px 12px; font-size: 12px; flex: 1; margin: 0;" onclick="resetApiUrl('deployed')">Use Deployed API</button>
+            </div>
+        </div>
+
+        <div class="drawer-section">
+            <div class="drawer-label">Connection Status</div>
+            <div id="connectionStatusBox" class="kpi-card" style="padding: 16px; text-align: left; background-color: var(--spotify-black); display: flex; align-items: center; justify-content: space-between;">
+                <span id="connectionStatusText" style="font-size: 13px; font-weight: 600; color: var(--spotify-light-grey);">Not Tested</span>
+                <span class="status-badge status-idle" id="connectionStatusBadge">Unknown</span>
+            </div>
+            <button class="btn" style="margin-top: 12px;" onclick="testApiConnection()">
+                Test Connection
+            </button>
+        </div>
+
+        <div style="position: absolute; bottom: 24px; left: 24px; right: 24px; display: flex; gap: 12px;">
+            <button class="btn btn-secondary" style="margin: 0; flex: 1;" onclick="closeSettingsModal()">Cancel</button>
+            <button class="btn" style="margin: 0; flex: 1;" onclick="saveApiSettings()">Save & Reload</button>
+        </div>
+    </div>
+
     <!-- Outer App Container -->
     <div class="app-container">
         
         <!-- Sidebar controls -->
         <aside>
-            <div class="logo-section">
-                <!-- Spotify Icon SVG -->
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424c-.18.295-.565.387-.86.207-2.377-1.454-5.37-1.783-8.894-1.007-.336.075-.67-.14-.744-.477-.074-.336.14-.67.477-.743 3.844-.85 7.14-.47 9.813 1.163.295.18.387.563.208.857zm1.222-2.724c-.226.367-.707.487-1.074.26-2.72-1.672-6.87-2.157-10.076-1.183-.412.125-.845-.107-.97-.52-.125-.413.107-.847.52-.972 3.666-1.112 8.243-.566 11.34 1.34.367.227.487.708.26 1.075zm.106-2.836C14.693 8.8 9.387 8.625 6.31 9.56c-.475.144-.977-.128-1.12-.603-.143-.476.128-.977.603-1.12 3.537-1.073 9.4-0.864 13.13 1.35.427.254.57.81.317 1.237-.254.426-.81.568-1.237.315z"/></svg>
-                <h1>Spotify Growth</h1>
+            <div class="logo-section" style="justify-content: space-between; width: 100%;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <!-- Spotify Icon SVG -->
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424c-.18.295-.565.387-.86.207-2.377-1.454-5.37-1.783-8.894-1.007-.336.075-.67-.14-.744-.477-.074-.336.14-.67.477-.743 3.844-.85 7.14-.47 9.813 1.163.295.18.387.563.208.857zm1.222-2.724c-.226.367-.707.487-1.074.26-2.72-1.672-6.87-2.157-10.076-1.183-.412.125-.845-.107-.97-.52-.125-.413.107-.847.52-.972 3.666-1.112 8.243-.566 11.34 1.34.367.227.487.708.26 1.075zm.106-2.836C14.693 8.8 9.387 8.625 6.31 9.56c-.475.144-.977-.128-1.12-.603-.143-.476.128-.977.603-1.12 3.537-1.073 9.4-0.864 13.13 1.35.427.254.57.81.317 1.237-.254.426-.81.568-1.237.315z"/></svg>
+                    <h1>Spotify Growth</h1>
+                </div>
+                <button class="settings-icon-btn" onclick="openSettingsModal()" title="Configure API Endpoint">
+                    <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                </button>
             </div>
             
             <div class="form-group">
@@ -567,6 +693,15 @@
         
         <!-- Main Panel Content -->
         <main>
+            <!-- API Connection Warning Banner -->
+            <div id="connectionWarningBanner" class="connection-warning-banner">
+                <div class="warning-text">
+                    <span>⚠️</span>
+                    <span>Unable to connect to the Backend API at <strong id="warningApiUrl"></strong>. Please ensure the server is running or update the endpoint settings.</span>
+                </div>
+                <button class="warning-action-btn" onclick="openSettingsModal()">Configure URL</button>
+            </div>
+
             <!-- Initial Dashboard Placeholder -->
             <div id="initialPlaceholder" class="card" style="padding: 60px; text-align: center;">
                 <div style="font-size: 56px; margin-bottom: 20px; color: var(--spotify-green);">
@@ -694,16 +829,22 @@
 
     <!-- Scripting Interactions -->
     <script>
-        const API_BASE = "http://localhost:8080/api/v1";
+        let API_BASE = localStorage.getItem("SPOTIFY_API_BASE_URL");
+        if (!API_BASE) {
+            if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+                API_BASE = "http://localhost:8080/api/v1";
+            } else {
+                // Default fallback for Vercel, can be updated by the user in the Settings modal
+                API_BASE = "http://localhost:8080/api/v1";
+            }
+        }
         let activeReviews = [];
         let pollingInterval = null;
         let currentPage = 1;
 
-        // On document load, fetch the initial dashboard state
+        // On document load, check API connection and fetch state
         window.addEventListener("DOMContentLoaded", () => {
-            // Keep page blank/waiting on initial load until triggered by PM
-            // fetchSummary();
-            // fetchReviews();
+            checkApiConnectionAndLoadData();
         });
 
         // Fetch weekly summaries
@@ -785,6 +926,9 @@
                     const frictionPct = totalThemesCount > 0 ? Math.round((frictionCount / totalThemesCount) * 100) : 0;
                     document.getElementById("kpiFriction").innerText = `${frictionPct}%`;
                 }
+                // Show dashboard and hide placeholder
+                document.getElementById("initialPlaceholder").style.display = "none";
+                document.getElementById("analysisDashboard").style.display = "block";
             } catch (err) {
                 console.log("[Dashboard] Initial loading summary failed: ", err);
             }
@@ -1024,6 +1168,109 @@
         // Export data routes download
         function exportData(format) {
             window.location.href = `${API_BASE}/insights/export?format=${format}`;
+        }
+
+        // API Settings Modal Interactions
+        function openSettingsModal() {
+            document.getElementById("apiBaseInput").value = API_BASE;
+            
+            // Reset connection test box
+            document.getElementById("connectionStatusText").innerText = "Not Tested";
+            const badge = document.getElementById("connectionStatusBadge");
+            badge.className = "status-badge status-idle";
+            badge.innerText = "Unknown";
+            
+            document.getElementById("settingsModal").classList.add("open");
+            document.getElementById("settingsOverlay").classList.add("open");
+        }
+
+        function closeSettingsModal() {
+            document.getElementById("settingsModal").classList.remove("open");
+            document.getElementById("settingsOverlay").classList.remove("open");
+        }
+
+        function resetApiUrl(type) {
+            const input = document.getElementById("apiBaseInput");
+            if (type === 'local') {
+                input.value = "http://localhost:8080/api/v1";
+            } else if (type === 'deployed') {
+                input.value = "https://spotify-discovery-api.onrender.com/api/v1";
+            }
+        }
+
+        async function testApiConnection() {
+            let url = document.getElementById("apiBaseInput").value.trim();
+            if (url.endsWith("/")) url = url.slice(0, -1);
+            if (!url.endsWith("/api/v1")) {
+                url = url + (url.endsWith("/api") ? "/v1" : "/api/v1");
+            }
+
+            const statusText = document.getElementById("connectionStatusText");
+            const statusBadge = document.getElementById("connectionStatusBadge");
+
+            statusText.innerText = "Testing connection...";
+            statusBadge.className = "status-badge status-running";
+            statusBadge.innerText = "Testing";
+
+            try {
+                const res = await fetch(`${url}/reviews?page=1&limit=1`);
+                if (res.ok) {
+                    statusText.innerText = "Connected successfully!";
+                    statusBadge.className = "status-badge status-completed";
+                    statusBadge.innerText = "Online";
+                } else {
+                    statusText.innerText = `Connected (Error: ${res.status})`;
+                    statusBadge.className = "status-badge status-failed";
+                    statusBadge.innerText = "Error";
+                }
+            } catch (err) {
+                console.warn("[API Test] Ping failed:", err);
+                statusText.innerText = "Failed to connect (Network Error)";
+                statusBadge.className = "status-badge status-failed";
+                statusBadge.innerText = "Offline";
+            }
+        }
+
+        function saveApiSettings() {
+            let url = document.getElementById("apiBaseInput").value.trim();
+            if (url.endsWith("/")) url = url.slice(0, -1);
+            if (!url.endsWith("/api/v1")) {
+                url = url + (url.endsWith("/api") ? "/v1" : "/api/v1");
+            }
+
+            API_BASE = url;
+            localStorage.setItem("SPOTIFY_API_BASE_URL", url);
+            closeSettingsModal();
+            
+            checkApiConnectionAndLoadData();
+        }
+
+        function showWarningBanner(apiUrl) {
+            document.getElementById("warningApiUrl").innerText = apiUrl;
+            document.getElementById("connectionWarningBanner").style.display = "flex";
+        }
+
+        function hideWarningBanner() {
+            document.getElementById("connectionWarningBanner").style.display = "none";
+        }
+
+        async function checkApiConnectionAndLoadData() {
+            try {
+                // Preflight ping check
+                const res = await fetch(`${API_BASE}/reviews?page=1&limit=1`);
+                if (res.ok) {
+                    hideWarningBanner();
+                    // Load the summary (shows dashboard automatically if successful)
+                    await fetchSummary();
+                    // Load the reviews grid
+                    await fetchReviews();
+                } else {
+                    showWarningBanner(API_BASE);
+                }
+            } catch (err) {
+                console.warn("[Dashboard] Connection error:", err);
+                showWarningBanner(API_BASE);
+            }
         }
 
         // Helper to format timestamps nicely
