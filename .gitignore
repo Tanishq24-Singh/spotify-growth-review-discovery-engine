@@ -4,7 +4,6 @@ __pycache__/
 *$py.class
 
 # Databases
-spotify_feedback.db
 *.sqlite3
 
 # Local environment variables

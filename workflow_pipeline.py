@@ -42,7 +42,13 @@ def get_db_connection():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     db_path = os.path.join(base_dir, "spotify_feedback.db")
     
-    conn = sqlite3.connect(db_path, timeout=30.0, check_same_thread=False)
+    # If running on Vercel, open in read-only URI mode to prevent file-lock/write errors on read-only system
+    if os.getenv("VERCEL"):
+        db_uri = f"file:{db_path}?mode=ro"
+        conn = sqlite3.connect(db_uri, timeout=30.0, check_same_thread=False, uri=True)
+    else:
+        conn = sqlite3.connect(db_path, timeout=30.0, check_same_thread=False)
+        
     conn.row_factory = sqlite3.Row
     return conn
 
