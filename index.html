@@ -834,8 +834,12 @@
             if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
                 API_BASE = "http://localhost:8080/api/v1";
             } else {
-                // Default fallback for Vercel, can be updated by the user in the Settings modal
-                API_BASE = "http://localhost:8080/api/v1";
+                // If hosted on Render, use relative path. If on Vercel, default to the Render backend service.
+                if (window.location.hostname.endsWith(".onrender.com")) {
+                    API_BASE = window.location.origin + "/api/v1";
+                } else {
+                    API_BASE = "https://spotify-growth-review-discovery-engine.onrender.com/api/v1";
+                }
             }
         }
         let activeReviews = [];
