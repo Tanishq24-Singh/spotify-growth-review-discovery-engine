@@ -38,8 +38,11 @@ def get_db_connection():
         except Exception as e:
             print(f"[Warning] Failed to connect to Postgres: {e}. Falling back to SQLite.")
     
-    # Fallback to sqlite for simple local runs
-    conn = sqlite3.connect("spotify_feedback.db", timeout=30.0, check_same_thread=False)
+    # Fallback to sqlite using absolute path relative to this script's directory
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    db_path = os.path.join(base_dir, "spotify_feedback.db")
+    
+    conn = sqlite3.connect(db_path, timeout=30.0, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     return conn
 

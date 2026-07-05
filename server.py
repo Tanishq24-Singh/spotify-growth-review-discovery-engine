@@ -61,7 +61,8 @@ def init_server_db():
 @app.route("/")
 def serve_frontend():
     """Serves the static index.html dashboard file."""
-    return send_file("index.html")
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    return send_file(os.path.join(base_dir, "index.html"))
 
 # ==========================================
 # API Endpoints
