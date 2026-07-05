@@ -839,14 +839,8 @@
             if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
                 API_BASE = "http://localhost:8080/api/v1";
             } else {
-                // If hosted on Render, use relative path. If on Vercel, default to the Render backend service.
-                if (window.location.hostname.endsWith(".onrender.com")) {
-                    API_BASE = window.location.origin + "/api/v1";
-                } else {
-                    // Dynamically map vercel subdomain to onrender subdomain
-                    const subDomain = window.location.hostname.split(".")[0];
-                    API_BASE = `https://${subDomain}.onrender.com/api/v1`;
-                }
+                // In production, backend API is served from the same origin (Vercel serverless / unified deployment)
+                API_BASE = window.location.origin + "/api/v1";
             }
         }
         let activeReviews = [];
