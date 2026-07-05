@@ -838,7 +838,9 @@
                 if (window.location.hostname.endsWith(".onrender.com")) {
                     API_BASE = window.location.origin + "/api/v1";
                 } else {
-                    API_BASE = "https://spotify-growth-review-discovery-engine.onrender.com/api/v1";
+                    // Dynamically map vercel subdomain to onrender subdomain
+                    const subDomain = window.location.hostname.split(".")[0];
+                    API_BASE = `https://${subDomain}.onrender.com/api/v1`;
                 }
             }
         }
