@@ -1264,10 +1264,7 @@
                 const res = await fetch(`${API_BASE}/reviews?page=1&limit=1`);
                 if (res.ok) {
                     hideWarningBanner();
-                    // Load the summary (shows dashboard automatically if successful)
-                    await fetchSummary();
-                    // Load the reviews grid
-                    await fetchReviews();
+                    // Keep dashboard in empty/placeholder state (0 comments) on initial load
                 } else {
                     showWarningBanner(API_BASE);
                 }
