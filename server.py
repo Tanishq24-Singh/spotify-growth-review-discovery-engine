@@ -69,6 +69,7 @@ def serve_frontend():
 # ==========================================
 
 @app.route("/api/v1/workflows/trigger", methods=["POST"])
+@app.route("/workflows/trigger", methods=["POST"])
 def trigger_workflow():
     """
     POST /api/v1/workflows/trigger
@@ -195,6 +196,7 @@ def trigger_workflow():
 
 
 @app.route("/api/v1/health", methods=["GET"])
+@app.route("/health", methods=["GET"])
 def health_check():
     """
     GET /api/v1/health
@@ -225,6 +227,7 @@ def health_check():
 
 
 @app.route("/api/v1/workflows/status/<uuid_id>", methods=["GET"])
+@app.route("/workflows/status/<uuid_id>", methods=["GET"])
 def get_workflow_status(uuid_id):
     """
     GET /api/v1/workflows/status/:id
@@ -271,6 +274,7 @@ def get_workflow_status(uuid_id):
 
 
 @app.route("/api/v1/reviews", methods=["GET"])
+@app.route("/reviews", methods=["GET"])
 def get_reviews():
     """
     GET /api/v1/reviews
@@ -475,6 +479,7 @@ def get_reviews():
 
 
 @app.route("/api/v1/insights/summary", methods=["GET"])
+@app.route("/insights/summary", methods=["GET"])
 def get_insights_summary():
     """
     GET /api/v1/insights/summary
@@ -530,6 +535,7 @@ def get_insights_summary():
 
 
 @app.route("/api/v1/insights/export", methods=["GET"])
+@app.route("/insights/export", methods=["GET"])
 def export_insights_report():
     """
     GET /api/v1/insights/export
@@ -560,11 +566,11 @@ def export_insights_report():
         summary_text = row["summary_text"]
     else:
         themes = row[4]
-        actions = row[5]
+        summary_text = row[5]
+        actions = row[6]
         period_start = row[1]
         period_end = row[2]
         avg_sentiment = row[3]
-        summary_text = row[4]
         
     if export_format == "json":
         json_bytes = BytesIO(json.dumps({
@@ -601,6 +607,7 @@ def export_insights_report():
 
 
 @app.route("/api/v1/interviews", methods=["POST"])
+@app.route("/interviews", methods=["POST"])
 def save_interview():
     """
     POST /api/v1/interviews

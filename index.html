@@ -616,7 +616,7 @@
         
         <div class="drawer-section">
             <div class="drawer-label">Backend API Base URL</div>
-            <input type="text" id="apiBaseInput" class="settings-input" placeholder="http://localhost:8080/api/v1">
+            <input type="text" id="apiBaseInput" class="settings-input" placeholder="/api/v1">
             <div style="display: flex; gap: 8px;">
                 <button class="btn btn-secondary" style="padding: 8px 12px; font-size: 12px; flex: 1; margin: 0;" onclick="resetApiUrl('local')">Reset to Local</button>
                 <button class="btn btn-secondary" style="padding: 8px 12px; font-size: 12px; flex: 1; margin: 0;" onclick="resetApiUrl('deployed')">Use Deployed API</button>
@@ -836,12 +836,8 @@
         }
 
         if (!API_BASE) {
-            if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-                API_BASE = "http://localhost:8080/api/v1";
-            } else {
-                // In production, backend API is served from the same origin (Vercel serverless / unified deployment)
-                API_BASE = window.location.origin + "/api/v1";
-            }
+            // Serve backend from the same origin (fully dynamic fallback for both local and production Vercel)
+            API_BASE = window.location.origin + "/api/v1";
         }
         let activeReviews = [];
         let pollingInterval = null;
@@ -1197,9 +1193,9 @@
         function resetApiUrl(type) {
             const input = document.getElementById("apiBaseInput");
             if (type === 'local') {
-                input.value = "http://localhost:8080/api/v1";
+                input.value = window.location.protocol + "//" + window.location.hostname + ":8080/api/v1";
             } else if (type === 'deployed') {
-                input.value = "https://spotify-discovery-api.onrender.com/api/v1";
+                input.value = window.location.origin + "/api/v1";
             }
         }
 

@@ -2,6 +2,8 @@ import os
 import re
 import json
 import uuid
+import shutil
+import threading
 from datetime import datetime, timedelta
 import sqlite3
 
@@ -29,6 +31,8 @@ except ImportError:
 # 1. Database Connection & Schema Setup
 # ==========================================
 
+_db_copy_lock = threading.Lock()
+
 def get_db_connection():
     """Establishes database connection, falling back to local SQLite if Postgres URL is not present."""
     db_url = os.getenv("DATABASE_URL")
@@ -42,10 +46,21 @@ def get_db_connection():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     db_path = os.path.join(base_dir, "spotify_feedback.db")
     
-    # If running on Vercel, open in read-only URI mode to prevent file-lock/write errors on read-only system
+    # If running on Vercel, use a writable SQLite copy in /tmp
     if os.getenv("VERCEL"):
-        db_uri = f"file:{db_path}?mode=ro"
-        conn = sqlite3.connect(db_uri, timeout=30.0, check_same_thread=False, uri=True)
+        writable_path = "/tmp/spotify_feedback.db"
+        if not os.path.exists(writable_path):
+            with _db_copy_lock:
+                if not os.path.exists(writable_path):
+                    try:
+                        if os.path.exists(db_path):
+                            shutil.copy2(db_path, writable_path)
+                            print(f"[Vercel Database] Copied template SQLite database to {writable_path}")
+                        else:
+                            print(f"[Vercel Database] SQLite template database not found at {db_path}.")
+                    except Exception as e:
+                        print(f"[Vercel Database] Error copying SQLite template database: {e}")
+        conn = sqlite3.connect(writable_path, timeout=30.0, check_same_thread=False)
     else:
         conn = sqlite3.connect(db_path, timeout=30.0, check_same_thread=False)
         
@@ -263,7 +278,7 @@ def collect_organic_reviews(sources):
     
     collected_items = []
     start_dt = datetime(2019, 1, 1)
-    now_dt = datetime.utcnow()
+    now_dt = datetime.utcnow() + timedelta(minutes=5)
     
     def fetch_json(url):
         req = urllib.request.Request(url, headers=HEADERS)
@@ -468,7 +483,7 @@ def ingest_raw_reviews(reviews_list):
     is_sqlite = isinstance(conn, sqlite3.Connection)
     
     start_dt = datetime(2019, 1, 1)
-    now_dt = datetime.utcnow()
+    now_dt = datetime.utcnow() + timedelta(minutes=5)
     
     inserted_count = 0
     for item in reviews_list:
